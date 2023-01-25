@@ -1,13 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import Questions from './questions';
 
 const Quiz = () => {
 
     const location = useLocation();
-    console.log(location.state.name);
+    const {name, id} = location.state
+    const [Quiz, setQuiz] = useState([]);
+
+    useEffect(() => {
+        fetch(`https://openapi.programming-hero.com/api/quiz/${id}`)
+            .then(res => res.json())
+            .then(data => setQuiz(data.data.questions))
+    }, []);
+
+
     return (
-        <div>
-            <h1>Quiz of {location.state.name}</h1>
+        <div className='mt-10'>
+            <h1 className='text-center text-bold text-2xl text-cyan-700'>Quiz of {name}</h1>
+
+            <div className='w-1/2 m-auto '>
+                {
+                    Quiz.map(quiz => <Questions key={quiz.id} quiz={quiz}></Questions>)
+                }
+            </div>
         </div>
     );
 };
