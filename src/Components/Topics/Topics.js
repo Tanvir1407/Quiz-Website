@@ -9,7 +9,6 @@ const Topics = () => {
             .then(data => setTopic(data.data));
     }, [])
     
-    console.log(Topics)
     return (
         <div>
             <h1>This is Topics </h1>
