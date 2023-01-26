@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import Questions from './questions';
+import DetectedQN from './DetectedQN';
 
 const Quiz = () => {
 
@@ -14,14 +14,14 @@ const Quiz = () => {
             .then(data => setQuiz(data.data.questions))
     }, []);
 
-
+    
     return (
         <div className='mt-10'>
             <h1 className='text-center text-bold text-2xl text-cyan-700'>Quiz of {name}</h1>
 
             <div className='w-1/2 m-auto '>
                 {
-                    Quiz.map(quiz => <Questions key={quiz.id} quiz={quiz}></Questions>)
+                    Quiz.map(quiz => <DetectedQN key={quiz.id} quiz={quiz}> </DetectedQN>)
                 }
             </div>
         </div>
